@@ -1,0 +1,27 @@
+.editorContainer {
+  width: 375px;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid #000000;
+
+  h2 {
+    font-size: 22px;
+  }
+
+  input {
+    width: 200px;
+    margin: 20px 0;
+    border: 1px solid #000000;
+  }
+
+  textarea {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 0 10px;
+    margin-top: 10px;
+    border: 1px solid #000000;
+  }
+}

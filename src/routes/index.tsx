@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import DiaryEditor from './DiaryEditor'
 import styles from './routes.module.scss'
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <div className={styles.appWrapper}>
       <div className={styles.app}>
         <Routes>
+          <Route path='/' element={<DiaryEditor />} />
           <Route path='*' element={<div>404</div>} />
         </Routes>
       </div>
