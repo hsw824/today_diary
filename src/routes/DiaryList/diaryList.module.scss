@@ -1,0 +1,35 @@
+@use '/src/styles/constants/colors';
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 375px;
+  height: 720px;
+  padding: 40px;
+  background-color: colors.$MAIN_COLOR;
+  border-radius: 60px;
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: colors.$WHITE;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 18px;
+    color: colors.$WHITE;
+    text-align: center;
+  }
+
+  .itemContainer {
+    width: 295px;
+    height: 550px;
+    padding: 20px;
+    margin: 20px 0;
+    overflow-y: scroll;
+    background: colors.$SUB_COLOR;
+    border-radius: 14px;
+  }
+}
