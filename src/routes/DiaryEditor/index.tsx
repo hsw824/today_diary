@@ -47,7 +47,6 @@ const DiaryEditor = () => {
     if (content.length < 5) {
       contentArea.current?.focus()
     }
-    // setEditData((prev) => [author, content, emotion, ...prev])
     onCreate()
     setAuthor('')
     setContent('')
@@ -58,12 +57,19 @@ const DiaryEditor = () => {
       <h2>오늘의 일기를 적어보세요</h2>
       <form>
         <div>
-          <input ref={authorInput} onChange={handleAuthor} value={author} type='text' placeholder='이름을 적어주세요' />
+          <input
+            ref={authorInput}
+            onChange={handleAuthor}
+            value={author}
+            type='text'
+            placeholder='이름을 적어주세요.'
+          />
         </div>
-        <div>
-          <textarea ref={contentArea} onChange={handleContent} value={content} />
+        <div className={styles.content}>
+          <p>오늘 있었던 일들을 간단하게 적어보세요.</p>
+          <textarea maxLength={200} ref={contentArea} onChange={handleContent} value={content} />
         </div>
-        <div>
+        <div className={styles.emotion}>
           <select onChange={handleEmotion} value={emotion}>
             <option value='😆'>😆</option>
             <option value='😃'>😃</option>
