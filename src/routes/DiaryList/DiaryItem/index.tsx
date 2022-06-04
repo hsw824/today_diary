@@ -1,3 +1,4 @@
+import styles from './diaryItem.module.scss'
 import useLocalStorageState from 'use-local-storage-state'
 
 interface Props {
@@ -24,13 +25,15 @@ const DiaryItem = ({ author, content, createdDate, emotion, id }: Props) => {
   }
 
   return (
-    <div>
-      <div>
-        <p>작성자 : {author}</p>
-        <p>감정점수 : {emotion}</p>
-        <p>작성시간 : {date}</p>
-        <p>{content}</p>
-        <button type='button' onClick={handleDelete}>
+    <div className={styles.itemWrapper}>
+      <div className={styles.itemBody}>
+        <div className={styles.itemSubject}>
+          <p className={styles.itemAuthor}>작성자 : {author}</p>
+          <p className={styles.itemEmotion}>감정점수 : {emotion}</p>
+        </div>
+        <p className={styles.itemDate}>작성시간 : {date}</p>
+        <p className={styles.itemContent}>{content}</p>
+        <button className={styles.itemButton} type='button' onClick={handleDelete}>
           삭제하기
         </button>
       </div>

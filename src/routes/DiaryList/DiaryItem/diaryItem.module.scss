@@ -1,0 +1,34 @@
+@use '/src/styles/constants/colors';
+
+.itemWrapper {
+  .itemBody {
+    height: 320px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: colors.$ITEM_BODY;
+    border-radius: 12px;
+
+    .itemSubject {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    .itemDate {
+      font-size: 14px;
+    }
+
+    .itemContent {
+      letter-spacing: 0.02rem;
+    }
+
+    .itemButton {
+      padding: 5px 10px;
+      background-color: colors.$ITEM_BUTTON;
+      border-radius: 6px;
+    }
+  }
+}
