@@ -1,10 +1,34 @@
 import styles from './diaryEditor.module.scss'
-import { useState, ChangeEvent, MouseEvent } from 'react'
+import { useState, ChangeEvent, MouseEvent, useRef } from 'react'
+import useLocalStorageState from 'use-local-storage-state'
+import Footer from 'routes/_shared/Footer'
 
 const DiaryEditor = () => {
   const [author, setAuthor] = useState('')
   const [content, setContent] = useState('')
-  const [emotion, setEmotion] = useState('')
+  const [emotion, setEmotion] = useState('😆')
+  const dataId = useRef(0)
+
+  const [, setEditData] = useLocalStorageState<any[]>('editData', {
+    ssr: true,
+    defaultValue: [],
+  })
+
+  const onCreate = () => {
+    const createdDate = new Date().getTime()
+    const newItem = {
+      author,
+      content,
+      emotion,
+      createdDate,
+      id: dataId.current,
+    }
+    dataId.current += 1
+    setEditData((prev) => [newItem, ...prev])
+  }
+
+  const authorInput = useRef<HTMLInputElement>(null)
+  const contentArea = useRef<HTMLTextAreaElement>(null)
 
   const handleAuthor = (event: ChangeEvent<HTMLInputElement>) => {
     setAuthor(event.currentTarget.value)
@@ -17,25 +41,35 @@ const DiaryEditor = () => {
   }
   const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    console.log(author, content, emotion)
+    if (author.length < 1) {
+      authorInput.current?.focus()
+    }
+    if (content.length < 5) {
+      contentArea.current?.focus()
+    }
+    // setEditData((prev) => [author, content, emotion, ...prev])
+    onCreate()
+    setAuthor('')
+    setContent('')
+    setEmotion('')
   }
   return (
     <div className={styles.editorContainer}>
       <h2>오늘의 일기를 적어보세요</h2>
       <form>
         <div>
-          <input onChange={handleAuthor} value={author} type='text' placeholder='이름을 적어주세요' />
+          <input ref={authorInput} onChange={handleAuthor} value={author} type='text' placeholder='이름을 적어주세요' />
         </div>
         <div>
-          <textarea onChange={handleContent} value={content} />
+          <textarea ref={contentArea} onChange={handleContent} value={content} />
         </div>
         <div>
           <select onChange={handleEmotion} value={emotion}>
-            <option value={1}>😆</option>
-            <option value={2}>😃</option>
-            <option value={3}>🙂</option>
-            <option value={4}>😞</option>
-            <option value={5}>😩</option>
+            <option value='😆'>😆</option>
+            <option value='😃'>😃</option>
+            <option value='🙂'>🙂</option>
+            <option value='😞'>😞</option>
+            <option value='😩'>😩</option>
           </select>
         </div>
 
@@ -43,6 +77,7 @@ const DiaryEditor = () => {
           일기 저장하기
         </button>
       </form>
+      <Footer />
     </div>
   )
 }
