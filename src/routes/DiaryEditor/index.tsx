@@ -1,5 +1,5 @@
 import styles from './diaryEditor.module.scss'
-import { useState, ChangeEvent, MouseEvent, useRef } from 'react'
+import { useState, ChangeEvent, useRef, FormEvent } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 import Footer from 'routes/_shared/Footer'
 
@@ -7,9 +7,10 @@ const DiaryEditor = () => {
   const [author, setAuthor] = useState('')
   const [content, setContent] = useState('')
   const [emotion, setEmotion] = useState('😆')
-  const dataId = useRef(0)
 
-  const [, setEditData] = useLocalStorageState<any[]>('editData', {
+  const dataId = useRef(-1)
+
+  const [editData, setEditData] = useLocalStorageState<any[]>('editData', {
     ssr: true,
     defaultValue: [],
   })
@@ -21,9 +22,8 @@ const DiaryEditor = () => {
       content,
       emotion,
       createdDate,
-      id: dataId.current,
+      id: editData.length >= 1 ? (dataId.current = editData[0].id + 1) : (dataId.current += 1),
     }
-    dataId.current += 1
     setEditData((prev) => [newItem, ...prev])
   }
 
@@ -39,23 +39,24 @@ const DiaryEditor = () => {
   const handleEmotion = (event: ChangeEvent<HTMLSelectElement>) => {
     setEmotion(event.currentTarget.value)
   }
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (author.length < 1) {
       authorInput.current?.focus()
-    }
-    if (content.length < 5) {
+    } else if (content.length < 5) {
       contentArea.current?.focus()
+    } else {
+      onCreate()
+      setAuthor('')
+      setContent('')
+      setEmotion('😆')
     }
-    onCreate()
-    setAuthor('')
-    setContent('')
-    setEmotion('')
   }
   return (
     <div className={styles.editorContainer}>
       <h2>오늘의 일기를 적어보세요</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <input
             ref={authorInput}
@@ -79,9 +80,7 @@ const DiaryEditor = () => {
           </select>
         </div>
 
-        <button onClick={handleSubmit} type='submit'>
-          일기 저장하기
-        </button>
+        <button type='submit'>일기 저장하기</button>
       </form>
       <Footer />
     </div>
