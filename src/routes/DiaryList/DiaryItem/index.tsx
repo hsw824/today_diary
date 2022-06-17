@@ -1,5 +1,7 @@
 import styles from './diaryItem.module.scss'
 import useLocalStorageState from 'use-local-storage-state'
+import Modal from 'utils/Modal'
+import { useState } from 'react'
 
 interface Props {
   author: string
@@ -23,7 +25,11 @@ const DiaryItem = ({ author, content, createdDate, emotion, id }: Props) => {
     }
     onDelete(id)
   }
+  const [isOpen, setIsOpen] = useState(false)
 
+  const modalOpen = () => {
+    setIsOpen((prev) => !prev)
+  }
   return (
     <div className={styles.itemWrapper}>
       <div className={styles.itemBody}>
@@ -33,9 +39,17 @@ const DiaryItem = ({ author, content, createdDate, emotion, id }: Props) => {
         </div>
         <p className={styles.itemDate}>작성시간 : {date}</p>
         <p className={styles.itemContent}>{content}</p>
-        <button className={styles.itemButton} type='button' onClick={handleDelete}>
+        <button type='button' onClick={modalOpen} className={styles.itemButton}>
           삭제하기
         </button>
+        {isOpen ? (
+          <Modal title='일기를 삭제합니다.' content='확인' handleDelete={handleDelete} handleCancle={modalOpen} />
+        ) : null}
+
+        {/* <h1>해당 일기를 삭제하시겠습니까?</h1>
+        <button type='button' onClick={modalOpen}>
+          예
+        </button> */}
       </div>
     </div>
   )

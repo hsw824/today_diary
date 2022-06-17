@@ -1,0 +1,50 @@
+@use '/src/styles/constants/colors';
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+}
+
+.modalBody {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 888;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  height: 300px;
+  padding: 20px;
+  margin-top: -150px;
+  margin-left: -100px;
+  background: colors.$WHITE;
+  border-radius: 20px;
+
+  h2 {
+    margin-top: 30px;
+    font-size: 20px;
+    color: colors.$BLACK;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+    margin-bottom: 30px;
+
+    button {
+      width: 50px;
+      padding: 5px 10px;
+      color: colors.$WHITE;
+      background: colors.$MAIN_COLOR;
+      border-radius: 10px;
+    }
+  }
+}
