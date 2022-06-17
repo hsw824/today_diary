@@ -64,6 +64,7 @@ const DiaryEditor = () => {
             value={author}
             type='text'
             placeholder='이름을 적어주세요.'
+            maxLength={5}
           />
         </div>
         <div className={styles.content}>
