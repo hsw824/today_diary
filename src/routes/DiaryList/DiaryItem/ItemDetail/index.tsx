@@ -6,35 +6,30 @@ import Modal from 'utils/Modal'
 import goBackArrow from 'assets/svgs/goBack.svg'
 
 import styles from './itemDetail.module.scss'
+import { Props } from 'types/diaryData'
 
-interface Props {
-  author: string
-  emotion: string
-  createdDate: string
-  content: string
-  id: number
-}
 const ItemDetail = () => {
-  const [editData, setEditData] = useLocalStorageState<any[]>('editData', {
+  const [editData, setEditData] = useLocalStorageState<Props[]>('editData', {
     ssr: true,
     defaultValue: [],
   })
   const [isOpen, setIsOpen] = useState(false)
   const [isModify, setIsModify] = useState(false)
   const [detailData, setDetailData] = useState({
-    author: '',
+    title: '',
     emotion: '',
     date: '',
     content: '',
   })
   const { id }: any = useParams()
+
   const navigate = useNavigate()
   const [localContent, setLocalContent]: any = useState()
   useLayoutEffect(() => {
-    const { author, emotion, createdDate, content } = editData[id]
+    const { title, emotion, createdDate, content } = editData[id]
     const date = new Date(createdDate).toLocaleString()
     setDetailData({
-      author,
+      title,
       emotion,
       date,
       content,
@@ -73,7 +68,7 @@ const ItemDetail = () => {
     setLocalContent(detailData.content)
   }
 
-  const onModify: any = (targetId: number, newContent: string) => {
+  const onModify = (targetId: number, newContent: string) => {
     setEditData(editData.map((it) => (it.id === targetId ? { ...it, content: newContent } : it)))
   }
 
@@ -89,7 +84,7 @@ const ItemDetail = () => {
       <h2>일기를 읽어보세요</h2>
       <div className={styles.detailBody}>
         <div className={styles.detailItems}>
-          <p className={styles.title}>제목 : {detailData.author}</p>
+          <p className={styles.title}>제목 : {detailData.title}</p>
           <p className={styles.emotion}>감정점수 : {detailData.emotion}</p>
           <p className={styles.date}>작성 시간 : {detailData.date}</p>
           {isModify ? (

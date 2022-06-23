@@ -2,9 +2,10 @@ import styles from './diaryList.module.scss'
 import DiaryItem from './DiaryItem'
 import useLocalStorageState from 'use-local-storage-state'
 import Footer from 'routes/_shared/Footer'
+import { Props } from 'types/diaryData'
 
 const DiaryList = () => {
-  const [editData] = useLocalStorageState<any[]>('editData', {
+  const [editData] = useLocalStorageState<Props[]>('editData', {
     ssr: true,
     defaultValue: [],
   })
@@ -14,7 +15,7 @@ const DiaryList = () => {
       <div className={styles.itemContainer}>
         <h4>{editData.length}개의 일기가 있습니다.</h4>
 
-        {editData.map((item: any) => (
+        {editData.map((item: Props) => (
           <DiaryItem key={item.id} {...item} />
         ))}
       </div>

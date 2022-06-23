@@ -5,7 +5,7 @@ import Footer from 'routes/_shared/Footer'
 import styles from './diaryEditor.module.scss'
 
 const DiaryEditor = () => {
-  const [author, setAuthor] = useState('')
+  const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [emotion, setEmotion] = useState('😆')
 
@@ -19,7 +19,7 @@ const DiaryEditor = () => {
   const onCreate = () => {
     const createdDate = new Date().getTime()
     const newItem = {
-      author,
+      title,
       content,
       emotion,
       createdDate,
@@ -32,7 +32,7 @@ const DiaryEditor = () => {
   const contentArea = useRef<HTMLTextAreaElement>(null)
 
   const handleAuthor = (event: ChangeEvent<HTMLInputElement>) => {
-    setAuthor(event.currentTarget.value)
+    setTitle(event.currentTarget.value)
   }
   const handleContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(event.currentTarget.value)
@@ -43,13 +43,13 @@ const DiaryEditor = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (author.length < 1) {
+    if (title.length < 1) {
       authorInput.current?.focus()
     } else if (content.length < 5) {
       contentArea.current?.focus()
     } else {
       onCreate()
-      setAuthor('')
+      setTitle('')
       setContent('')
       setEmotion('😆')
     }
@@ -62,10 +62,10 @@ const DiaryEditor = () => {
           <input
             ref={authorInput}
             onChange={handleAuthor}
-            value={author}
+            value={title}
             type='text'
-            placeholder='이름을 적어주세요.'
-            maxLength={5}
+            placeholder='제목을 적어주세요.'
+            maxLength={15}
           />
         </div>
         <div className={styles.content}>
