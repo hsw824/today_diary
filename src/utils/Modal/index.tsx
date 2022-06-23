@@ -1,6 +1,7 @@
-import styles from './modal.module.scss'
 import ReactDOM from 'react-dom'
 import { MouseEvent } from 'react'
+
+import styles from './modal.module.scss'
 
 interface Prop {
   title: string
@@ -9,7 +10,6 @@ interface Prop {
   handleCancle: (event: MouseEvent<HTMLButtonElement>) => void
 }
 const Modal = ({ title, content, handleDelete, handleCancle }: Prop) => {
-  const modalRoot = document.getElementById('modal') as HTMLDivElement
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
       <div className={styles.modalBody}>
@@ -24,7 +24,7 @@ const Modal = ({ title, content, handleDelete, handleCancle }: Prop) => {
         </div>
       </div>
     </div>,
-    modalRoot
+    document.getElementById('modal') as HTMLDivElement
   )
 }
 
