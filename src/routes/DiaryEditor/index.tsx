@@ -1,7 +1,8 @@
-import styles from './diaryEditor.module.scss'
 import { useState, ChangeEvent, useRef, FormEvent } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
 import Footer from 'routes/_shared/Footer'
+
+import styles from './diaryEditor.module.scss'
 
 const DiaryEditor = () => {
   const [author, setAuthor] = useState('')
@@ -22,9 +23,9 @@ const DiaryEditor = () => {
       content,
       emotion,
       createdDate,
-      id: editData.length >= 1 ? (dataId.current = editData[0].id + 1) : (dataId.current += 1),
+      id: editData.length >= 1 ? (dataId.current = editData[editData.length - 1].id + 1) : (dataId.current += 1),
     }
-    setEditData((prev) => [newItem, ...prev])
+    setEditData((prev) => [...prev, newItem])
   }
 
   const authorInput = useRef<HTMLInputElement>(null)
