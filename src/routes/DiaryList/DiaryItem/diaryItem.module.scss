@@ -2,8 +2,8 @@
 
 .itemWrapper {
   .itemBody {
-    height: 320px;
-    padding: 20px;
+    height: 100px;
+    padding: 10px;
     margin-bottom: 10px;
     background: colors.$ITEM_BODY;
     border-radius: 12px;
@@ -22,7 +22,10 @@
     }
 
     .itemContent {
+      overflow: hidden;
+      text-overflow: ellipsis;
       letter-spacing: 0.02rem;
+      white-space: nowrap;
     }
 
     .itemButton {
