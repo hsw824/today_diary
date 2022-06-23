@@ -1,13 +1,7 @@
 import { Link } from 'react-router-dom'
+import { Props } from 'types/diaryData'
 
 import styles from './diaryItem.module.scss'
-
-interface Props {
-  title: string
-  content: string
-  emotion: string
-  id: number
-}
 
 const DiaryItem = ({ title, content, emotion, id }: Props) => {
   return (

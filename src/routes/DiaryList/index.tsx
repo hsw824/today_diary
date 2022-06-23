@@ -1,8 +1,9 @@
-import styles from './diaryList.module.scss'
 import DiaryItem from './DiaryItem'
 import useLocalStorageState from 'use-local-storage-state'
 import Footer from 'routes/_shared/Footer'
 import { Props } from 'types/diaryData'
+
+import styles from './diaryList.module.scss'
 
 const DiaryList = () => {
   const [editData] = useLocalStorageState<Props[]>('editData', {

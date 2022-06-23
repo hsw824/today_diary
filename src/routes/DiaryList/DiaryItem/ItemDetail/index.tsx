@@ -4,9 +4,9 @@ import Footer from 'routes/_shared/Footer'
 import useLocalStorageState from 'use-local-storage-state'
 import Modal from 'utils/Modal'
 import goBackArrow from 'assets/svgs/goBack.svg'
+import { Props } from 'types/diaryData'
 
 import styles from './itemDetail.module.scss'
-import { Props } from 'types/diaryData'
 
 const ItemDetail = () => {
   const [editData, setEditData] = useLocalStorageState<Props[]>('editData', {
