@@ -3,9 +3,9 @@ import { Props } from 'types/diaryData'
 
 import styles from './diaryItem.module.scss'
 
-const DiaryItem = ({ title, content, emotion, id }: Props) => {
+const DiaryItem = ({ title, content, emotion, index }: Props) => {
   return (
-    <Link to={`/item/${id}`}>
+    <Link to={`/item/${index}`}>
       <div className={styles.itemWrapper}>
         <div className={styles.itemBody}>
           <p className={styles.itemAuthor}>제목 : {title}</p>

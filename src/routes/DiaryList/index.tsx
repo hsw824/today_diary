@@ -15,9 +15,8 @@ const DiaryList = () => {
       <h2> 일기 리스트</h2>
       <div className={styles.itemContainer}>
         <h4>{editData.length}개의 일기가 있습니다.</h4>
-
-        {editData.map((item: Props) => (
-          <DiaryItem key={item.id} {...item} />
+        {editData.map((item: Props, index) => (
+          <DiaryItem key={item.id} {...item} index={index} />
         ))}
       </div>
       <Footer />

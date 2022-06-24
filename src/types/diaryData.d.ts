@@ -4,4 +4,5 @@ export interface Props {
   createdDate: string
   content: string
   id: number
+  index?: number
 }
