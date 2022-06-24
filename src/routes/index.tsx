@@ -1,7 +1,10 @@
+import { Route, Routes } from 'react-router-dom'
+
 import DiaryEditor from './DiaryEditor'
 import DiaryList from './DiaryList'
+import ItemDetail from './DiaryList/DiaryItem/ItemDetail'
+
 import styles from './routes.module.scss'
-import { Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
@@ -10,6 +13,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<DiaryEditor />} />
           <Route path='list' element={<DiaryList />} />
+          <Route path='/item/:id' element={<ItemDetail />} />
           <Route path='*' element={<div>404</div>} />
         </Routes>
       </div>

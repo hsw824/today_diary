@@ -9,8 +9,6 @@ export { useI18n } from './useI18n'
 export { useKeys } from './useKeys'
 export { useSendApi } from './useSendApi'
 export { useTimeoutFn } from './useTimeoutFn'
-export { useAppDispatch } from './useAppDispatch'
-export { useAppSelector } from './useAppSelector'
 
 export function useMounted(): boolean {
   const [mounted, setMounted] = useState(false)
