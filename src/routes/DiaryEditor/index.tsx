@@ -58,7 +58,8 @@ const DiaryEditor = () => {
     <div className={styles.editorContainer}>
       <h2>오늘의 일기를 적어보세요</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.title}>
+          <p>{title.length < 1 ? '제목은 1글자 이상 적어주세요!' : null}</p>
           <input
             ref={authorInput}
             onChange={handleAuthor}
@@ -70,6 +71,8 @@ const DiaryEditor = () => {
         </div>
         <div className={styles.content}>
           <p>오늘 있었던 일들을 간단하게 적어보세요.</p>
+          <p>{content.length < 5 ? '내용은 5글자 이상 적어주세요!' : null}</p>
+
           <textarea maxLength={200} ref={contentArea} onChange={handleContent} value={content} />
         </div>
         <div className={styles.emotion}>
