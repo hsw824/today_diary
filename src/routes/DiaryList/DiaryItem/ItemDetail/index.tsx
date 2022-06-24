@@ -21,12 +21,15 @@ const ItemDetail = () => {
     date: '',
     content: '',
   })
+  const [localContent, setLocalContent] = useState('')
+
   const { id }: any = useParams()
 
   const navigate = useNavigate()
-  const [localContent, setLocalContent]: any = useState()
   useLayoutEffect(() => {
     const { title, emotion, createdDate, content } = editData[id]
+
+    // const { title, emotion, createdDate, content } = newItem
     const date = new Date(createdDate).toLocaleString()
     setDetailData({
       title,
@@ -34,10 +37,8 @@ const ItemDetail = () => {
       date,
       content,
     })
-
     setLocalContent(content)
   }, [editData, id])
-
   const modalOpen = () => {
     setIsOpen((prev) => !prev)
   }
