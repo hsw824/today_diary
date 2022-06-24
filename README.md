@@ -47,9 +47,9 @@ src
 ```
 
 ## 🖼 실행 이미지
-|삭제|수정|
-|:---:|:---:|
-|![삭제](https://user-images.githubusercontent.com/79175916/175512788-b5d528a2-e623-4558-bbe1-3c876149e3ab.gif)|![수정](https://user-images.githubusercontent.com/79175916/175512851-bd97cafb-c1c1-4b46-ba39-b8fdb3e677f4.gif)|
+|작성|삭제|수정|
+|:---:|:---:|:---:|
+|![작성](https://user-images.githubusercontent.com/79175916/175514629-762db7cc-fca9-4bb0-9064-b9bc73c179c2.gif)|![삭제](https://user-images.githubusercontent.com/79175916/175512788-b5d528a2-e623-4558-bbe1-3c876149e3ab.gif)|![수정](https://user-images.githubusercontent.com/79175916/175512851-bd97cafb-c1c1-4b46-ba39-b8fdb3e677f4.gif)|
 
 ## 🔧구현 방법
 ### 1. 다이어리 에디터
