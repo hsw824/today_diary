@@ -29,7 +29,6 @@ const ItemDetail = () => {
   useLayoutEffect(() => {
     const { title, emotion, createdDate, content } = editData[id]
 
-    // const { title, emotion, createdDate, content } = newItem
     const date = new Date(createdDate).toLocaleString()
     setDetailData({
       title,
