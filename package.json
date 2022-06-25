@@ -70,7 +70,6 @@
     "recoil": "^0.7.3",
     "store": "^2.0.12",
     "use-local-storage-state": "17",
-    "victory": "^36.4.0",
     "victory-core": "^36.4.0",
     "web-vitals": "^2.1.0"
   },
