@@ -30,5 +30,14 @@
     overflow-y: scroll;
     background: colors.$SUB_COLOR;
     border-radius: 14px;
+
+    input {
+      width: 255px;
+      padding: 5px 10px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 6px;
+      outline: 2px solid colors.$FOCUS_COLOR;
+    }
   }
 }
