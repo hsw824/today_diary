@@ -3,14 +3,20 @@ import { Props } from 'types/diaryData'
 
 import styles from './diaryItem.module.scss'
 
-const DiaryItem = ({ title, content, emotion, index }: Props) => {
+const DiaryItem = ({ title, content, index, createdDate }: Props) => {
+  const year = new Date(createdDate).getFullYear()
+  const month = new Date(createdDate).getMonth() + 1
+  const day = new Date(createdDate).getDay()
+
   return (
     <Link to={`/item/${index}`}>
       <div className={styles.itemWrapper}>
         <div className={styles.itemBody}>
           <p className={styles.itemAuthor}>제목 : {title}</p>
-          <p className={styles.itemEmotion}>감정점수 : {emotion}</p>
-          <p className={styles.itemContent}>{content}</p>
+          <p>
+            작성일 : {year}년 {month}월 {day}일
+          </p>
+          <p className={styles.itemContent}>내용 : {content}</p>
         </div>
       </div>
     </Link>
