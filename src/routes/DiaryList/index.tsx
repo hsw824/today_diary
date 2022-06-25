@@ -22,7 +22,6 @@ const DiaryList = () => {
         <input type='text' value={value} onChange={onChange} placeholder='일기 내용을 검색하세요' />
         <h4>{editData.length}개의 일기가 있습니다.</h4>
         {editData
-
           .filter((val) => {
             if (value === '') {
               return val
