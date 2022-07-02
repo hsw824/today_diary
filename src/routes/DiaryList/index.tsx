@@ -13,7 +13,7 @@ const DiaryList = () => {
   })
   const [value, setValue] = useState('')
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
+    setValue(event.currentTarget.value)
   }
   return (
     <div className={styles.listContainer}>
