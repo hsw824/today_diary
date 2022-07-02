@@ -9,7 +9,7 @@ import styles from './routes.module.scss'
 
 const App = () => {
   return (
-    <div className={styles.appWrapper}>
+    <div>
       <div className={styles.app}>
         <Routes>
           <Route path='/' element={<DiaryEditor />} />
