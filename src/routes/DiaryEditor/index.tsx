@@ -1,17 +1,24 @@
 import { useState, ChangeEvent, useRef, FormEvent } from 'react'
 import useLocalStorageState from 'use-local-storage-state'
-import Footer from 'routes/_shared/Footer'
 
 import styles from './diaryEditor.module.scss'
 
 const DiaryEditor = () => {
+  interface IEditData {
+    id: number
+    title: string
+    content: string
+    emotion: string
+    createdDate: number
+  }
+
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [emotion, setEmotion] = useState('😆')
 
-  const dataId = useRef(-1)
+  const dataId = useRef(0)
 
-  const [editData, setEditData] = useLocalStorageState<any[]>('editData', {
+  const [editData, setEditData] = useLocalStorageState<IEditData[]>('editData', {
     ssr: true,
     defaultValue: [],
   })
@@ -54,12 +61,13 @@ const DiaryEditor = () => {
       setEmotion('😆')
     }
   }
+
   return (
     <div className={styles.editorContainer}>
       <h2>오늘의 일기를 적어보세요</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.title}>
-          <p>{title.length < 1 ? '제목은 1글자 이상 적어주세요!' : null}</p>
+          <p>{title.length < 1 && '제목은 1글자 이상 적어주세요!'}</p>
           <input
             ref={authorInput}
             onChange={handleAuthor}
@@ -71,7 +79,7 @@ const DiaryEditor = () => {
         </div>
         <div className={styles.content}>
           <p>오늘 있었던 일들을 간단하게 적어보세요.</p>
-          <p>{content.length < 5 ? '내용은 5글자 이상 적어주세요!' : null}</p>
+          <p>{content.length < 5 && '내용은 5글자 이상 적어주세요!'}</p>
 
           <textarea maxLength={200} ref={contentArea} onChange={handleContent} value={content} />
         </div>
@@ -87,7 +95,6 @@ const DiaryEditor = () => {
 
         <button type='submit'>일기 저장하기</button>
       </form>
-      <Footer />
     </div>
   )
 }
