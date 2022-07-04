@@ -6,7 +6,7 @@ import styles from './diaryItem.module.scss'
 const DiaryItem = ({ title, content, index, createdDate }: Props) => {
   const year = new Date(createdDate).getFullYear()
   const month = new Date(createdDate).getMonth() + 1
-  const day = new Date(createdDate).getDay()
+  const day = new Date(createdDate).getDate()
 
   return (
     <Link to={`/item/${index}`}>
