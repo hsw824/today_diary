@@ -1,8 +1,7 @@
 import DiaryItem from './DiaryItem'
-import useLocalStorageState from 'use-local-storage-state'
-import Footer from 'routes/_shared/Footer'
 import { useState, ChangeEvent } from 'react'
 import { Props } from 'types/diaryData'
+import useLocalStorageState from 'use-local-storage-state'
 
 import styles from './diaryList.module.scss'
 
@@ -13,7 +12,7 @@ const DiaryList = () => {
   })
   const [value, setValue] = useState('')
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
+    setValue(event.currentTarget.value)
   }
   return (
     <div className={styles.listContainer}>
@@ -22,20 +21,11 @@ const DiaryList = () => {
         <input type='text' value={value} onChange={onChange} placeholder='일기 내용을 검색하세요' />
         <h4>{editData.length}개의 일기가 있습니다.</h4>
         {editData
-          .filter((val) => {
-            if (value === '') {
-              return val
-            }
-            if (val.content.includes(value)) {
-              return val
-            }
-            return false
-          })
+          .filter((val) => !!val.content.includes(value))
           .map((item: Props, index) => (
             <DiaryItem key={item.id} {...item} index={index} />
           ))}
       </div>
-      <Footer />
     </div>
   )
 }

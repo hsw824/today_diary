@@ -7,9 +7,9 @@ interface Prop {
   title: string
   content: string
   handleDelete?: (event: MouseEvent<HTMLButtonElement>) => void
-  handleCancle: (event: MouseEvent<HTMLButtonElement>) => void
+  handleCancel: (event: MouseEvent<HTMLButtonElement>) => void
 }
-const Modal = ({ title, content, handleDelete, handleCancle }: Prop) => {
+const Modal = ({ title, content, handleDelete, handleCancel }: Prop) => {
   return ReactDOM.createPortal(
     <div className={styles.modalContainer}>
       <div className={styles.modalBody}>
@@ -18,7 +18,7 @@ const Modal = ({ title, content, handleDelete, handleCancle }: Prop) => {
           <button type='button' onClick={handleDelete}>
             {content}
           </button>
-          <button type='button' onClick={handleCancle}>
+          <button type='button' onClick={handleCancel}>
             취소
           </button>
         </div>

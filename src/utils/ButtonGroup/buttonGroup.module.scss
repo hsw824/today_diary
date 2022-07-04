@@ -1,0 +1,13 @@
+@use '/src/styles/constants/_colors';
+
+.editButton {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 60px;
+
+  .itemButton {
+    padding: 5px 10px;
+    background-color: colors.$ITEM_BUTTON;
+    border-radius: 6px;
+  }
+}

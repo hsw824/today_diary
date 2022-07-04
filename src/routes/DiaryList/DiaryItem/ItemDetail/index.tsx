@@ -1,10 +1,10 @@
+import Modal from 'utils/Modal'
+import ButtonGroup from 'utils/ButtonGroup'
 import { useLayoutEffect, useState, ChangeEvent } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import Footer from 'routes/_shared/Footer'
-import useLocalStorageState from 'use-local-storage-state'
-import Modal from 'utils/Modal'
-import goBackArrow from 'assets/svgs/goBack.svg'
 import { Props } from 'types/diaryData'
+import useLocalStorageState from 'use-local-storage-state'
+import goBackArrow from 'assets/svgs/goBack.svg'
 
 import styles from './itemDetail.module.scss'
 
@@ -23,11 +23,11 @@ const ItemDetail = () => {
   })
   const [localContent, setLocalContent] = useState('')
 
-  const { id }: any = useParams()
+  const { id } = useParams() as { id: string }
 
   const navigate = useNavigate()
   useLayoutEffect(() => {
-    const { title, emotion, createdDate, content } = editData[id]
+    const { title, emotion, createdDate, content } = editData[Number(id)]
 
     const date = new Date(createdDate).toLocaleString()
     setDetailData({
@@ -48,7 +48,7 @@ const ItemDetail = () => {
 
       setEditData(() => [...newDiaryList])
     }
-    onDelete(editData[id].id)
+    onDelete(editData[Number(id)].id)
     navigate('/list', { replace: true })
   }
 
@@ -73,7 +73,7 @@ const ItemDetail = () => {
   }
 
   const handleModify = () => {
-    onModify(editData[id].id, localContent)
+    onModify(editData[Number(id)].id, localContent)
     toggleModify()
   }
   return (
@@ -96,32 +96,16 @@ const ItemDetail = () => {
 
         <div>
           {isModify ? (
-            <div className={styles.editButton}>
-              <button type='button' onClick={handleModify} className={styles.itemButton}>
-                수정 완료
-              </button>
-              <button type='button' onClick={handleQuitModify} className={styles.itemButton}>
-                수정 취소
-              </button>
-            </div>
+            <ButtonGroup text1='수정 완료' text2='수정 취소' onClick1={handleModify} onClick2={handleQuitModify} />
           ) : (
-            <div className={styles.editButton}>
-              <button type='button' onClick={modalOpen} className={styles.itemButton}>
-                삭제하기
-              </button>
-              <button type='button' onClick={toggleModify} className={styles.itemButton}>
-                수정하기
-              </button>
-            </div>
+            <ButtonGroup text1='삭제하기' text2='수정하기' onClick1={modalOpen} onClick2={toggleModify} />
           )}
         </div>
 
-        {isOpen ? (
-          <Modal title='일기를 삭제합니다.' content='확인' handleDelete={handleDelete} handleCancle={modalOpen} />
-        ) : null}
+        {isOpen && (
+          <Modal title='일기를 삭제합니다.' content='확인' handleDelete={handleDelete} handleCancel={modalOpen} />
+        )}
       </div>
-
-      <Footer />
     </div>
   )
 }
