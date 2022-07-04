@@ -15,8 +15,8 @@ const App = () => {
           <Route path='/' element={<DiaryEditor />} />
           <Route path='list' element={<DiaryList />} />
           <Route path='/item/:id' element={<ItemDetail />} />
+          <Route path='*' element={<div>404</div>} />
         </Route>
-        <Route path='*' element={<div>404</div>} />
       </Routes>
     </div>
   )
